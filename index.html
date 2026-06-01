@@ -56,12 +56,18 @@
         }
 
         /* ================= HERO ================= */
-
         .hero{
-            background:linear-gradient(180deg,#001242 0%,#000000 100%);
-            text-align:center;
-            padding:80px 20px 120px 20px;
-            position:relative;
+         background:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+         url("gambar/daniel6.jpg");
+
+         background-size:cover;
+         background-position:center;
+        background-repeat:no-repeat;
+
+    text-align:center;
+    padding:80px 20px 120px 20px;
+    position:relative;
         }
 
         .hero h1{
@@ -723,9 +729,11 @@
 
     <!-- ================= AUDIO ================= -->
 
-    <audio autoplay loop ="bgMusic" loop>
-        <source src="gambar/get.mp3" type="audio/mp3">
-    </audio>
+    <audio id="bgMusic" autoplay loop> 
+            <source src="gambar/get.mp3" type="audio/mp3">   
+     </audio>
+        
+
 
     <button class="music-btn" id="musicToggle">
         🎵 Play Music
