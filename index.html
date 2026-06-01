@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Festival</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Inter',sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background-color:#030303;
+            color:#ffffff;
+            overflow-x:hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav{
+            display:flex;
+            justify-content:flex-end;
+            gap:30px;
+            padding:25px 5%;
+            background:#001242;
+            position:sticky;
+            top:0;
+            z-index:999;
+        }
+
+        nav a{
+            color:#ffffff;
+            text-decoration:none;
+            font-size:14px;
+            font-weight:600;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            color:#60a5fa;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero{
+            background:linear-gradient(180deg,#001242 0%,#000000 100%);
+            text-align:center;
+            padding:80px 20px 120px 20px;
+            position:relative;
+        }
+
+        .hero h1{
+            font-size:80px;
+            font-weight:800;
+            line-height:1.1;
+            margin-bottom:30px;
+        }
+
+        .hero h1 span{
+            display:block;
+            font-size:110px;
+            background:linear-gradient(to right,#ffffff,#a5b4fc);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .btn-book{
+            background-color:#0052ff;
+            color:white;
+            border:none;
+            padding:14px 28px;
+            font-weight:600;
+            border-radius:6px;
+            cursor:pointer;
+            text-transform:uppercase;
+            font-size:14px;
+            letter-spacing:0.5px;
+            transition:0.3s;
+        }
+
+        .btn-book:hover{
+            background-color:#003ecb;
+            transform:scale(1.05);
+        }
+
+        /* ================= SECTION TITLE ================= */
+
+        .section-title{
+            text-align:center;
+            font-size:45px;
+            font-weight:800;
+            letter-spacing:2px;
+            margin-bottom:50px;
+            text-transform:uppercase;
+        }
+
+        /* ================= GUEST ================= */
+
+        .guest-section{
+            padding:80px 5%;
+            background-color:#ffffff;
+            color:#000000;
+        }
+
+        .guest-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:40px;
+            max-width:1200px;
+            margin:0 auto;
+        }
+
+        .guest-card{
+            text-align:center;
+            transition:0.4s;
+            cursor:pointer;
+        }
+
+        .guest-card:hover{
+            transform:translateY(-12px) scale(1.03);
+            box-shadow:0 15px 35px rgba(59,130,246,0.35);
+        }
+
+        .guest-img{
+            width:100%;
+            height:350px;
+            object-fit:cover;
+            border-radius:40px;
+            margin-bottom:20px;
+            background-color:#e5e7eb;
+        }
+
+        .guest-card h3{
+            font-size:20px;
+            font-weight:700;
+            margin-bottom:10px;
+            text-transform:uppercase;
+        }
+
+        .guest-card p{
+            font-size:14px;
+            color:#666666;
+            line-height:1.6;
+            padding:0 10px;
+        }
+
+        /* ================= SCHEDULE ================= */
+
+        .schedule-stage-section{
+            background-color:#0b0f19;
+            padding:80px 5%;
+            display:flex;
+            flex-wrap:wrap;
+            gap:50px;
+            max-width:1200px;
+            margin:0 auto;
+        }
+
+        .schedule-box{
+            flex:1.5;
+            min-width:300px;
+        }
+
+        .stage-box{
+            flex:1;
+            min-width:300px;
+        }
+
+        .schedule-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:30px;
+            margin-top:30px;
+        }
+
+        .day-column h4{
+            color:#6b7280;
+            font-size:14px;
+            text-transform:uppercase;
+            margin-bottom:5px;
+        }
+
+        .day-column h3{
+            font-size:28px;
+            font-weight:800;
+            margin-bottom:25px;
+        }
+
+        .event-item{
+            margin-bottom:20px;
+            border-left:2px solid #3b82f6;
+            padding-left:15px;
+            transition:0.3s;
+        }
+
+        .event-item:hover{
+            transform:translateX(8px);
+        }
+
+        .event-time{
+            font-size:13px;
+            color:#9ca3af;
+        }
+
+        .event-name{
+            font-size:16px;
+            font-weight:600;
+            margin-top:2px;
+        }
+
+        .stage-poster{
+            width:100%;
+            border-radius:12px;
+            border:1px solid #1e293b;
+            transition:0.4s;
+        }
+
+        .stage-poster:hover{
+            transform:scale(1.03);
+        }
+
+        /* ================= LYRICS ================= */
+
+        .lyrics-section{
+            padding:100px 5%;
+            background-color:#2563eb;
+            font-size:75px;
+            font-weight:800;
+            line-height:1.1;
+            letter-spacing:-2px;
+        }
+
+        .lyrics-inline-img{
+            width:110px;
+            height:65px;
+            object-fit:cover;
+            display:inline-block;
+            vertical-align:middle;
+            border-radius:12px;
+            margin:0 10px;
+            background-color:#4b5563;
+        }
+
+        /* ================= TICKET ================= */
+
+        .ticket-section{
+            background-color:#070a13;
+            padding:80px 5%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:50px;
+        }
+
+        .video-container{
+            flex:1;
+            min-width:320px;
+            max-width:550px;
+            position:relative;
+            border-radius:16px;
+            overflow:hidden;
+            aspect-ratio:16/9;
+            background-color:#1e293b;
+        }
+
+        .video-placeholder-img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            opacity:0.7;
+        }
+
+        .play-btn{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:65px;
+            height:65px;
+            background:rgba(255,255,255,0.2);
+            backdrop-filter:blur(5px);
+            border:2px solid #ffffff;
+            border-radius:50%;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:0.3s;
+        }
+
+        .play-btn:hover{
+            transform:translate(-50%,-50%) scale(1.1);
+        }
+
+        .play-btn::after{
+            content:'';
+            display:block;
+            width:0;
+            height:0;
+            border-style:solid;
+            border-width:10px 0 10px 18px;
+            border-color:transparent transparent transparent #ffffff;
+            margin-left:5px;
+        }
+
+        .ticket-info{
+            flex:1;
+            min-width:300px;
+            max-width:450px;
+        }
+
+        .ticket-info h2{
+            font-size:42px;
+            font-weight:800;
+            line-height:1.1;
+            margin-bottom:20px;
+            text-transform:uppercase;
+        }
+
+        .ticket-info p{
+            color:#9ca3af;
+            font-size:15px;
+            line-height:1.6;
+            margin-bottom:30px;
+        }
+
+        /* ================= COUNTDOWN ================= */
+
+        .countdown-section{
+            background:#020617;
+            padding:70px 20px;
+            text-align:center;
+        }
+
+        .countdown-title{
+            font-size:40px;
+            font-weight:800;
+            margin-bottom:30px;
+            text-transform:uppercase;
+        }
+
+        .countdown-container{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .count-box{
+            background:#0f172a;
+            padding:25px;
+            border-radius:18px;
+            width:130px;
+            border:1px solid #1e293b;
+        }
+
+        .count-box h3{
+            font-size:42px;
+            color:#3b82f6;
+        }
+
+        .count-box p{
+            margin-top:8px;
+            color:#9ca3af;
+            text-transform:uppercase;
+            font-size:13px;
+        }
+
+        /* ================= MUSIC BUTTON ================= */
+
+        .music-btn{
+            position:fixed;
+            left:25px;
+            bottom:25px;
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(10px);
+            color:white;
+            border:1px solid rgba(255,255,255,0.2);
+            padding:14px 18px;
+            border-radius:40px;
+            cursor:pointer;
+            z-index:999;
+            transition:0.3s;
+        }
+
+        .music-btn:hover{
+            transform:scale(1.05);
+        }
+
+        /* ================= BACK TO TOP ================= */
+
+        #topBtn{
+            position:fixed;
+            bottom:25px;
+            right:25px;
+            background:#0052ff;
+            color:white;
+            border:none;
+            width:55px;
+            height:55px;
+            border-radius:50%;
+            font-size:22px;
+            cursor:pointer;
+            display:none;
+            z-index:999;
+        }
+
+        #topBtn:hover{
+            background:#2563eb;
+        }
+
+        /* ================= SCROLL ANIMATION ================= */
+
+        .fade-up{
+            opacity:0;
+            transform:translateY(40px);
+            transition:1s;
+        }
+
+        .fade-up.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:50px;
+            }
+
+            .hero h1 span{
+                font-size:65px;
+            }
+
+            .section-title{
+                font-size:32px;
+            }
+
+            .schedule-grid{
+                grid-template-columns:1fr;
+            }
+
+            .lyrics-section{
+                font-size:40px;
+            }
+
+            .lyrics-inline-img{
+                width:70px;
+                height:45px;
+            }
+
+            .ticket-info h2{
+                font-size:32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+        <a href="#">Guest</a>
+        <a href="#">Schedule</a>
+        <a href="#">Get In Touch</a>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero fade-up">
+
+        <h1>
+            Daniel
+            <span>Festival</span>
+        </h1>
+
+        <button class="btn-book">
+            Book Your Ticket
+        </button>
+
+    </section>
+
+    <!-- ================= GUEST ================= -->
+
+    <section class="guest-section fade-up">
+
+        <h2 class="section-title">
+            Guest
+        </h2>
+
+        <div class="guest-container">
+
+            <div class="guest-card">
+
+                <img class="guest-img" src="../gambar/real.jpg" alt="Reality Club">
+
+                <h3>Reality Club</h3>
+
+                <p>
+                    Reality Club is an Indonesian indie-rock band formed in 2016,
+                    quickly gained popularity with their catchy melodies and unique sound.
+                </p>
+
+            </div>
+
+            <div class="guest-card">
+
+                <img class="guest-img" src="../gambar/daniel1.jpg" alt="Daniel Caesar">
+
+                <h3>Daniel Caesar</h3>
+
+                <p>
+                    Daniel Caesar is a Canadian singer, famous for his smooth voice.
+                    The album "Freudian" is widely acclaimed.
+                </p>
+
+            </div>
+
+            <div class="guest-card">
+
+                <img class="guest-img" src="../gambar/magnolia.jpg" alt="Magnolia Celebration">
+
+                <h3>Magnolia Celebration</h3>
+
+                <p>
+                    Magnolia Celebration is a band known for energetic performances
+                    and unique genre fusion.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= SCHEDULE ================= -->
+
+    <div style="background-color:#0b0f19;">
+
+        <section class="schedule-stage-section fade-up">
+
+            <div class="schedule-box">
+
+                <h2 class="section-title" style="text-align:left; margin-bottom:10px;">
+                    Schedule
+                </h2>
+
+                <div class="schedule-grid">
+
+                    <div class="day-column">
+
+                        <h4>Saturday</h4>
+
+                        <h3>Oct 22</h3>
+
+                        <div class="event-item">
+                            <div class="event-time">9:00 pm</div>
+                            <div class="event-name">Reality Club</div>
+                        </div>
+
+                        <div class="event-item">
+                            <div class="event-time">10:00 pm</div>
+                            <div class="event-name">Daniel Caesar</div>
+                        </div>
+
+                        <div class="event-item">
+                            <div class="event-time">11:00 pm</div>
+                            <div class="event-name">Magnolia Celebration</div>
+                        </div>
+
+                    </div>
+
+                    <div class="day-column">
+
+                        <h4>Sunday</h4>
+
+                        <h3>Oct 23</h3>
+
+                        <div class="event-item">
+                            <div class="event-time">9:00 pm</div>
+                            <div class="event-name">Reality Club</div>
+                        </div>
+
+                        <div class="event-item">
+                            <div class="event-time">10:00 pm</div>
+                            <div class="event-name">Daniel Caesar</div>
+                        </div>
+
+                        <div class="event-item">
+                            <div class="event-time">11:00 pm</div>
+                            <div class="event-name">Magnolia Celebration</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="stage-box">
+
+                <h2 class="section-title" style="text-align:left; margin-bottom:40px;">
+                    Stage
+                </h2>
+
+                <img class="stage-poster" src="../gambar/peta.png" alt="Stage Map">
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- ================= LYRICS ================= -->
+
+    <section class="lyrics-section fade-up">
+
+        Daniel
+        <img class="lyrics-inline-img" src="../gambar/daniel2.jpg">
+
+        Caesar Best Part GET YOU
+
+        <img class="lyrics-inline-img" src="../gambar/daniel3.jpg">
+
+        Best
+
+        <img class="lyrics-inline-img" src="../gambar/daniel4.jpg">
+
+        Always Freudian
+
+    </section>
+
+    <!-- ================= TICKET ================= -->
+
+    <section class="ticket-section fade-up">
+
+        <div class="video-container">
+
+            <video class="video-placeholder-img" controls autoplay muted loop>
+    <source src="../gambar/daniel5.mp4" type="video/mp4">
+        </video>
+
+            <div class="play-btn"></div>
+
+        </div>
+
+        <div class="ticket-info">
+
+            <h2>
+                Save Your
+                <br>
+                Ticket
+            </h2>
+
+            <p>
+                Don't miss the chance to experience Daniel Caesar live.
+                Buy your tickets now for an unforgettable evening!
+            </p>
+
+            <button class="btn-book">
+                Book Now
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= COUNTDOWN ================= -->
+
+    <section class="countdown-section fade-up">
+
+        <h2 class="countdown-title">
+            Festival Starts In
+        </h2>
+
+        <div class="countdown-container">
+
+            <div class="count-box">
+                <h3 id="days">00</h3>
+                <p>Days</p>
+            </div>
+
+            <div class="count-box">
+                <h3 id="hours">00</h3>
+                <p>Hours</p>
+            </div>
+
+            <div class="count-box">
+                <h3 id="minutes">00</h3>
+                <p>Minutes</p>
+            </div>
+
+            <div class="count-box">
+                <h3 id="seconds">00</h3>
+                <p>Seconds</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= AUDIO ================= -->
+
+    <audio autoplay loop ="bgMusic" loop>
+        <source src="../gambar/get.mp3" type="audio/mp3">
+    </audio>
+
+    <button class="music-btn" id="musicToggle">
+        🎵 Play Music
+    </button>
+
+    <!-- ================= BACK TO TOP ================= -->
+
+    <button id="topBtn">↑</button>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ===== BACK TO TOP ===== */
+
+        const topBtn = document.getElementById("topBtn");
+
+        window.onscroll = function(){
+
+            if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300){
+
+                topBtn.style.display = "block";
+
+            }else{
+
+                topBtn.style.display = "none";
+
+            }
+
+        };
+
+        topBtn.onclick = function(){
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        };
+
+
+        /* ===== COUNTDOWN ===== */
+
+        const festivalDate = new Date("Oct 22, 2026 21:00:00").getTime();
+
+        const timer = setInterval(function(){
+
+            const now = new Date().getTime();
+
+            const distance = festivalDate - now;
+
+            const days = Math.floor(distance / (1000*60*60*24));
+
+            const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+
+            const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+
+            const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+        },1000);
+
+
+        /* ===== MUSIC ===== */
+
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicToggle");
+
+        let isPlaying = false;
+
+        musicBtn.addEventListener("click",()=>{
+
+            if(!isPlaying){
+
+                music.play();
+                musicBtn.innerHTML = "⏸ Pause Music";
+                isPlaying = true;
+
+            }else{
+
+                music.pause();
+                musicBtn.innerHTML = "🎵 Play Music";
+                isPlaying = false;
+
+            }
+
+        });
+
+
+        /* ===== ALERT BUTTON ===== */
+
+        const buttons = document.querySelectorAll(".btn-book");
+
+        buttons.forEach((btn)=>{
+
+            btn.addEventListener("click",()=>{
+
+                alert("🎟 Ticket successfully booked!");
+
+            });
+
+        });
+
+
+        /* ===== SCROLL ANIMATION ===== */
+
+        const fadeElements = document.querySelectorAll(".fade-up");
+
+        function showElements(){
+
+            fadeElements.forEach((el)=>{
+
+                const position = el.getBoundingClientRect().top;
+
+                const screenPosition = window.innerHeight / 1.2;
+
+                if(position < screenPosition){
+
+                    el.classList.add("show");
+
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll",showElements);
+
+        showElements();
+
+    </script>
+
+</body>
+</html>
